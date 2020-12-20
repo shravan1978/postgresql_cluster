@@ -81,18 +81,15 @@
       tags: firewall
 
     - role: hostname
-    - role: resolv_conf
     - role: etc_hosts
     - role: add-repository
     - role: packages
     - role: sudo
     - role: sysctl
     - role: transparent_huge_pages
-    - role: pam_limits
     - role: io-scheduler
     - role: locales
     - role: timezone
-    - role: ntp
     - role: ssh-keys
 
 - import_playbook: balancers.yml

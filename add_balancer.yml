@@ -65,7 +65,6 @@
       tags: firewall
 
     - role: hostname
-    - role: resolv_conf
     - role: sysctl
 
     - role: haproxy

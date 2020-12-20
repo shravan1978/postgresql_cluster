@@ -1,15 +1,12 @@
 ---
 
-- name: Add entries into /etc/hosts file
-  lineinfile:
+- name: Find whether /etc/hosts file exists
+  stat:
     path: /etc/hosts
-    regexp: "^{{ item }}"
-    line: "{{ item }}"
-    unsafe_writes: true  # to prevent failures in CI
-  loop: "{{ etc_hosts }}"
-  when:
-    - etc_hosts is defined
-    - etc_hosts | length > 0
-  tags: etc_hosts
+  register: result
 
+- name: Printing validation results if found
+  debug:
+    msg: "Validation successfull /etc/hosts exists"
+  register: result.stat.exists == true
 ...
