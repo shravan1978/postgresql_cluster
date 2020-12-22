@@ -1,5 +1,3 @@
----
-
 - name: Find whether /etc/hosts file exists
   stat:
     path: /etc/hosts
@@ -9,4 +7,3 @@
   debug:
     msg: "Validation successfull /etc/hosts exists"
   register: result.stat.exists == true
-...
