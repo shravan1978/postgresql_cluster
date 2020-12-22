@@ -1,7 +1,7 @@
 ---
 - name: Check all port numbers are accessible from the current host
   wait_for:
-    host: all
+    host: etcd_cluster
     port: "{{ item }}"
     state: started         # Port should be open
     delay: 0               # No wait before first check (sec)
