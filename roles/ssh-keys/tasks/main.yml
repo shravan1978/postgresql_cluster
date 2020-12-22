@@ -8,12 +8,15 @@
         shell: /bin/bash
         state: present
 
-    - name: Create a 2048-bit SSH key for user "{{ ssh_key_user }}" in ~/.ssh/id_rsa (if not already exist)  # yamllint disable rule:line-length
-      user:
-        name: "{{ ssh_key_user }}"
-        generate_ssh_key: true
-        ssh_key_bits: 2048
-        ssh_key_file: .ssh/id_rsa
+    - name: Validating whether ssh-keys exist for user "{{ ssh_key_user }}" in ~/.ssh/id_rsa 
+      stat:
+        path: "{{ ssh_key_user }}"/.ssh/id_rsa
+      register: result
+
+    - name: Printing validation results if found
+      debug:
+        msg: "Validation successfull SSH-Keys exists for user-ID"
+      register: result.stat.exists == true
 
     - name: Fetch key files from remote servers to ansible server
       fetch:
